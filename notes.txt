@@ -1,0 +1,364 @@
+Github
+
+Git source control & Github hosting service.
+Collection of file managed as repository.
+Unlimited free repositories for public repository.
+
+Commits:
+Snapshots are commits
+Dummy file to save a folder
+Commits are saved to the timeline as branch.
+
+
+
+$ git version
+$ git config —global user.name “MohanHustler”
+$ git config —global user.email “mohan@sketchbrahma.com”
+
+$ git init demo  => to create a new repository
+$ ls -la              => to list the .git folder
+
+Three States: (LOCAL)
+1. Working Directory
+2. Staging Area
+3. Repository( .git folder ) or Commit History
+
+REMOTE
+Internally contain all three state in it.
+
+ $ git status    =>  To check the status on git repository
+
+README.md => stands as markdown 
+
+$ git status
+$ git add README.md
+$ git status
+$ git commit -m “Readme file added into demo project”
+$ git status
+
+If you remove .git folder, it’s shows not in the git folder error
+
+In existing project => $ git init .  => will create a repository with .git folder in it.
+
+$ git commit -m => -m is a inline commit message
+$ git commit       => for multiline commit message
+
+$ git log       => To list all the commits
+$ git show   => It lists all the commits as well as changes using diff command
+
+$ git ls-files  => Tracks committed files
+We can see the diffrence between untracked fils and modified files.
+
+$ git commit -am  “Updating Readme”      =>  add modified files to git staging area
+$ git log                                                         => recent commits on top
+
+
+Backing Out Changes:
+1. To remove from $ git add .    =>       $ git reset HEAD README.md
+2. To discoed changes               =>       $ git checkout — README.md      
+       
+$ git help log
+$ git log —oneline —graph —decorate —all 
+
+There is no history so we can create one using alias
+$ git config —global alias.hist “log —oneline —graph —decorate —all”
+$ git config —global —list
+$ git hist
+
+Rename & delete files using git
+Create, Add & Commit example.txt file then need to change the name of the file
+$ git mv example.txt demo.txt                        => staged automatically
+$ git commit -m “renaming demo.txt file”     => renamed successfully
+
+$ git rm demo.txt                          			=> staged automatically
+$ git commit -m “deleting demo.txt file”   	=> deleted successfully
+
+Rename & delete files using bash
+$ mv LICENSE.md LICENSE.txt
+$ git add -u.   => staged only deleted file
+$ git add -A    => staged both created & deleted file
+$ git commit -m “Renamed & Created Successfully”
+
+$ rm myfile.txt
+$ git add -u
+$ git commit -m “Removed myfile.txt”
+
+
+Exclude Files from git
+ Create .gitignore file and add the files needs to be ignored like =>	*.log		=> Which removes all log files
+Then add & commit .gitignore file
+
+
+Difference between two commit points
+
+$ git diff d444e90 HEAD 	=>  it show the difference  between two commit points.(HEAD specifies the last commit in a current branch)
+ 
+Modify the file which is already committed and  => $ git diff	=>	 will show the difference between last commit and the changes.  
+
+Branching & Merging
+Branch is a timeline of commit.
+
+Types of merge:
+1. Fast forward merge     =>     No work detected on the parent branch, all commits applied to parent branch from other branch
+2. Automatic merge         =>     Non conflicting changes in parent branch, automatic merge commit for merging two branches
+3. Manual merge              =>     Happens git unable to automatically resolve any conflicts, manual merge commit 
+
+Special Markers or Pointers:
+Eg: HEAD (last commit address of the current branch,  we can manually move the head position)
+
+To create and checkout the branch:
+$ git checkout -b updates
+$ git hist
+$ git diff updates master
+
+To update the changes from updates branch to master switch to master branch
+$ git checkout master
+$ git merge updates 	=> (Here updates is the branch want to commit with master)
+The above one called as Fast-Forward merge, we apply all the commits directly to the master branch 
+$ git hist	=> HEAD master updates all points to the same commit id
+
+$ git branch -d updates	=>	To delete the branch 
+
+
+Conflict Resolution:
+Two branch have changes in a same file in a same line and committed.
+Express Commit:
+$ git commit -am “changes are done in branch name”
+Then merge the branch
+$ git merge very-bad
+
+
+Tagging:
+ To mark a milestone on git commits in a repository.
+ Tags are labels that you can put any arbitrary commit point. 
+
+1.Light Weight Tag: (No associated information)
+$ git tag mytag
+$ git tag —list
+$ git tag -d mytag	=>	To delete
+
+2.Annotated Tag: (Extra information associated with the tag)
+$ git tag -a v1.0 -m “Release 1.0”
+$ git tag —list
+$ git show v1.0	=>	Shows information like date, tagger, message & associated commits
+
+
+Stashing:
+$ git stash	=>	modification discarded and HEAD points to the last commit
+$ git stash list =>    shows  work in progress and last commit with message
+
+$ git stash pop	=>	Two actions (apply & drop)
+
+Time Travel with Reset & Reflog:
+
+Three types of reset:
+1. Soft                         =>   $ git reset ce2c810 —soft         =>   Reset to commit id that’s where HEAD is pointing with STAGING
+2. Default or Mixed    =>   $ git reset 6ad74df —mixed      =>   UNSTAGING
+3. Hard                       =>   $ git reset d444e90 —hard       =>   pending changes wiped out
+
+$ git reflog	=>	all the commits with action we did in the repository 
+To go to the commit before reset
+$ git reset —hard 67b1242	=> moved our commit id back (reset + reflog)
+
+
+http://luqin.xyz/react-bootstrap-datetimerangepicker/#/
+https://github.com/skratchdot/react-bootstrap-daterangepicker/issues/181
+
+https://docs.google.com/spreadsheets/d/1Lz9qfTYFfOY1iq17QuUj97AD7h47wlla0BU8V0UktQE/edit?ts=5e954230#gid=0
+https://bitbucket.org/inblox-moneyloji/web-emplyee-portal/commits/
+https://trello.com/b/HaZm7KGH/moneyloji
+https://app.zeplin.io/project/5e60d133a7eb9e111938b101/screen/5e6116ecee9848144f69d371
+
+https://dpaste.org/FqW8
+———————————————————————————————————————————————————————————————————
+
+https://www.youtube.com/results?search_query=authorization+using+passportjs
+
+https://github.com/bradtraversy/node_passport_login
+
+
+
+
+http://www.passportjs.org/packages/
+
+https://www.youtube.com/watch?v=Ne0tLHm1juE&t=1245s
+
+https://github.com/zachgoll/express-jwt-authentication-starter/blob/final/package.json
+
+
+
+
+// const authorized = (request, response, next) => {
+//   passport.authenticate("jwt", { session: false }, async (error, token) => {
+//     console.log("---called---", error);
+//     if (error || !token) {
+//       response.status(401).json({ message: "Unauthorized" });
+//     }
+//     try {
+//       const user = await db.User.findOne({
+//         where: { id: token.id },
+//       });
+//       request.user = user;
+//     } catch (error) {
+//       next(error);
+//     }
+//     next();
+//   })(request, response, next);
+// };
+
+
+
+————————————————————————————————————————————————————————————————————————
+
+gatspyjs
+Next
+Redux
+Saga
+Sub routes in react
+HOC
+
+
+REACT_APP_API=http://35.154.52.90/api
+
+Test server
+http://65.0.71.62/
+
+Previous dev server
+http://35.154.52.90/api
+
+Measurement ID (or) Tracking ID
+——————- — —- ————- —
+G-Q5CMNPZDNY
+
+
+npx json-server --watch db.json --port 3004
+
+
+——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+=====================================================================================================
+
+———————————————————————————————————————————————————————————————
+
+———————————————————————————————————————————————————————————————
+
+——————————————————————————————————————————————————————— 
+
+———————————————————————————————————————————————————————
+
+http://65.1.188.182/login
+
+8667712485
+Mohan@123
+
+Aadhar No : 2290 6785 9751
+
+Aadhar No : 388561782549
+
+Pan No: CWDPM3925K
+
+Acc No : 50103307210895
+
+IFSC Code:  HDFC0001979
+
+GSTIN NO: 07AADCB2230M1ZV
+
+UA-189278649-1
+
+9776217558
+9071962226
+
+
+api/org/getStudents => enrolment id, parent mobile, email missing
+
+—————————————————————————————————————————————
+
+DBNAME: pathfinder_daycare
+USERNAME: pathfindeuser
+PASSWORD: pathfinder123
+
+
+ ———
+| DEV |
+ ———
+
+Parent
+————
+shreya+swyc31@reckonsys.com
+Path?1234
+1234
+
+
+Daycare
+————
+shreya+1555@reckonsys.com
+Path?1234
+1234
+
+
+Physician 
+————-
+shreya+1phyd@reckonsys.com
+
+
+ ———
+| BETA |
+ ———
+
+Parent :
+shreya+swyc1@reckonsys.com
+shreya+betapt@reckonsys.com
+shreya+swycps@reckonsys.com
+shreya+swyc34@reckonsys.com
+shreya+beta30@reckonsys.com
+shreya+32@reckonsys.com
+betashreya@yopmail.com
+shreya+swyc34@reckonsys.com
+
+—————————————————————————————————————————————
+
+source .env
+
+poetry shell
+
+./manage.py runserver
+
+celery -A pathfinder worker --loglevel=info -E --concurrency=1
+
+9742527788
+
+
+./manage.py runserver
+celery -A pathfinder worker -l debug
+celery -A pathfinder beat
+minio server /Users/sketchbrahma/workspace/path-finder/data
+
+python manage.py export_client
+python manage.py migrate
+
+kumar+test_nav@reckonsys.com
+
+—————————————————————————————————————————————
+
+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
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
